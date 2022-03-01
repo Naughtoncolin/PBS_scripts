@@ -1,0 +1,21 @@
+#PBS -N beagle_pipeline_200window
+#PBS -A GT-ggibson3-biocluster
+#PBS -l nodes=1:ppn=12
+#PBS -l pmem=13gb
+#PBS -l walltime=3:00:00
+#PBS -m abe
+#PBS -M naughtoncolin@gatech.edu
+
+#module load anaconda3
+module load jdk
+
+cd $PBS_O_WORKDIR
+
+java -Xmx156g -jar /storage/home/hcoda1/0/cnaughton7/p-ggibson3-0/Software/beagle.28Jun21.220.jar \
+gt=/storage/home/hcoda1/0/cnaughton7/scratch/beagle-test/PA4.variant_filtered.vcf.gz \
+ref=/storage/home/hcoda1/0/cnaughton7/scratch/beagle-test/CCDG_14151_B01_GRM_WGS_2020-08-05_chr1.filtered.shapeit2-duohmm-phased.vcf.gz \
+out=/storage/home/hcoda1/0/cnaughton7/scratch/beagle-test/beagle.out2 \
+window=200.0 \
+nthreads=12 \
+chrom=1 \
+map=/storage/home/hcoda1/0/cnaughton7/scratch/beagle-test/plink.chr1.GRCh38.map
